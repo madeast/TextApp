@@ -10,9 +10,14 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Button;
 import android.app.AlertDialog;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class TextActivity extends AppCompatActivity
 {
+    private Button textingButton;
+    private EditText nuberText;
+    private TextView textingView;
 
 
     @Override
@@ -21,29 +26,45 @@ public class TextActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
 
-        findViewById(R.id.textingButton).setOnClickListener(this);
+        textingButton = (Button) findViewById(R.id.textingButton);
+        textingView = (TextView) findViewById(R.id.textingView);
+        nuberText = (EditText) findViewById(R.id.nuberText);
+
+        setupListeners();
+
     }
 
-    public void onClick(View v)
+    private void setupListeners()
     {
-        String phoneNumber = ((EditText)
-                findViewById(R.id.nuberText)).getText().toString();
-        try
+        textingButton.setOnClickListener(new View.OnClickListener()
         {
-            SmsManager.getDefault().sendTextMessage(phoneNumber, null, "Hello SMS!", null, null);
-        }
-        catch (Exception e)
-        {
-            AlertDialog.Builder alertDialogBuilder = new
+            public void onClick(View currentView)
+            {
+                try
+                {
+                    String phoneNumber = nuberText.getText().toString();
+                    String message = textingView.getText().toString();
+                    SmsManager.getDefault().sendTextMessage(phoneNumber, null, "Would you like to play a game?", null, null);
 
-                    AlertDialog.Builder(this);
-            AlertDialog dialog = alertDialogBuilder.create();
+                    Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_LONG).show();
+                }
+                catch (Exception currentException)
+                {
+                    Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
-            dialog.setMessage(e.getMessage());
-
-            dialog.show();
-        }
     }
+    private void sendSMS(String phoneNumber, String messageContent)
+    {
+        SmsManager mySMSManager = SmsManager.getDefault();
+        mySMSManager.sendTextMessage(phoneNumber, null, messageContent, null, null);
+    }
+
 }
+
+
 
 
