@@ -25,6 +25,7 @@ public class TextActivity extends AppCompatActivity
     private EditText smsEdit;
     private byte[] hold;
     private int defaultNumber;
+    private Button emerButton;
 
 
     @Override
@@ -37,13 +38,14 @@ public class TextActivity extends AppCompatActivity
         textingView = (TextView) findViewById(R.id.textingView);
         nuberText = (EditText) findViewById(R.id.nuberText);
         smsEdit = (EditText) findViewById(R.id.smsEdit);
+        emerButton = (Button) findViewById(R.id.emerButton);
 
         try
         {
             FileInputStream fos = openFileInput("defaultNumber");
             int worked = fos.read(hold,0,9);
             fos.close();
-            //defaultNumber = 
+            //defaultNumber =
             Toast.makeText(getApplicationContext(), worked, Toast.LENGTH_SHORT);
 
         }
@@ -72,6 +74,8 @@ public class TextActivity extends AppCompatActivity
                 }
             }
         });
+
+        emerButton.setOnClickListener((c));
 
     }
     private void sendSMS(String phoneNumber, String messageContent)
