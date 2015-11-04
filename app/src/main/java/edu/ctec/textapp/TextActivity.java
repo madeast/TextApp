@@ -102,6 +102,7 @@ public class TextActivity extends AppCompatActivity
                 try
                 {
                     phoneNumber = numberText.getText().toString();
+                    saveRecentNumber(phoneNumber);
                     String message = textingView.getText().toString();
                     SmsManager.getDefault().sendTextMessage(phoneNumber, null, Text, null, null);
 
@@ -162,7 +163,7 @@ public class TextActivity extends AppCompatActivity
         mySMSManager.sendTextMessage(phoneNumber, null, messageContent, null, null);
     }
 
-    private void saveRecentNumber(int number)
+    private void saveRecentNumber(String number)
     {
         try
         {
