@@ -37,15 +37,6 @@
         android:layout_marginBottom="32dp"
         android:hint="Text" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/smsEdit"
-        android:hint="Enter Message"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/textingButton"
-        android:layout_alignEnd="@+id/textingButton" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,5 +46,31 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="11dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cody"
+        android:id="@+id/codyButton"
+        android:layout_above="@+id/textingButton"
+        android:layout_toRightOf="@+id/textingButton"
+        android:layout_toEndOf="@+id/textingButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dad"
+        android:id="@+id/dadButton"
+        android:layout_alignBottom="@+id/codyButton"
+        android:layout_toLeftOf="@+id/textingButton"
+        android:layout_toStartOf="@+id/textingButton" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/smsEdit"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dialog"/>
 
 </RelativeLayout>

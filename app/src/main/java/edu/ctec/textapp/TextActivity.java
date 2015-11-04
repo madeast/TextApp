@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
 import android.app.AlertDialog;
@@ -16,17 +18,22 @@ import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import android.widget.Spinner;
+import java.util.ArrayList;
+
 
 public class TextActivity extends AppCompatActivity
 {
     private Button textingButton;
     private EditText nuberText;
     private TextView textingView;
-    private EditText smsEdit;
+    private Spinner smsEdit;
     private byte[] hold;
     private int defaultNumber;
-    private Button emerButton;
-
+    private Button codyButton;
+    private Button dadButton;
+    private ArrayList<String> myLIST;
+    private String Text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,8 +44,11 @@ public class TextActivity extends AppCompatActivity
         textingButton = (Button) findViewById(R.id.textingButton);
         textingView = (TextView) findViewById(R.id.textingView);
         nuberText = (EditText) findViewById(R.id.nuberText);
-        smsEdit = (EditText) findViewById(R.id.smsEdit);
-        emerButton = (Button) findViewById(R.id.emerButton);
+        smsEdit = (Spinner) findViewById(R.id.smsEdit);
+        codyButton = (Button) findViewById(R.id.codyButton);
+        dadButton = (Button) findViewById(R.id.dadButton);
+        myLIST = new ArrayList<String>();
+        Text = "I forgot to select a message to send.";
 
         try
         {
@@ -54,30 +64,73 @@ public class TextActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "First Time opening this App!", Toast.LENGTH_SHORT);
         }
 
+        loadArrayList();
         setupListeners();
     }
 
     private void setupListeners()
     {
-        textingButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View currentView) {
-                try {
+        textingButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View currentView)
+            {
+                try
+                {
                     String phoneNumber = nuberText.getText().toString();
                     String message = textingView.getText().toString();
-                    String Text = smsEdit.getText().toString();
                     SmsManager.getDefault().sendTextMessage(phoneNumber, null, Text, null, null);
 
                     Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_LONG).show();
-                } catch (Exception currentException) {
+                }
+                catch (Exception currentException)
+                {
                     Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
                     Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        emerButton.setOnClickListener((c));
+        codyButton.setOnClickListener(new View.OnClickListener()
+        {
+                public void onClick(View currentView)
+                {
+                     nuberText.setText("8018082905");
+                }
+
+        });
+
+        dadButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View currentView) {
+                nuberText.setText("8019493881");
+            }
+        });
+
+
+
+        smsEdit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                Text = smsEdit.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
+
+    private void loadArrayList()
+    {
+        myLIST.add("Hey how are you doing?");
+        myLIST.add("Hey I need help!");
+        myLIST.add("Whats up.");
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, myLIST);
+        smsEdit.setAdapter(spinnerAdapter);
+    }
+
     private void sendSMS(String phoneNumber, String messageContent)
     {
         SmsManager mySMSManager = SmsManager.getDefault();
@@ -86,36 +139,7 @@ public class TextActivity extends AppCompatActivity
 
     private void saveRecentNumber(int number)
     {
-        if(convertInt(number))
-        {
-            try
-            {
-                FileOutputStream fos = openFileOutput("defaultNumber", Context.MODE_PRIVATE);
-                fos.write(String.valueOf(number).getBytes());
-                fos.close();
 
-            }
-            catch(Exception e)
-            {
-                Toast.makeText(getApplicationContext(), "Number Was not Saved", Toast.LENGTH_LONG).show();            }
-
-        }
-
-    }
-
-    private boolean convertInt(int number)
-    {
-        boolean isString = false;
-        try
-        {
-            String.valueOf(number);
-            isString = true;
-        }
-        catch(Exception e)
-        {
-            Toast.makeText(getApplicationContext(), "Error number Not Converted to string", Toast.LENGTH_SHORT);
-        }
-        return isString;
     }
 
 }
