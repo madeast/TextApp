@@ -31,8 +31,6 @@ public class TextActivity extends AppCompatActivity
     private EditText numberText;
     private TextView textingView;
     private Spinner smsEdit;
-    private byte[] hold;
-    private String defaultNumber;
     private Button codyButton;
     private Button dadButton;
     private ArrayList<String> myLIST;
