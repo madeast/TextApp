@@ -51,17 +51,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cody"
-        android:id="@+id/codyButton"
-        android:layout_above="@+id/textingButton"
-        android:layout_toRightOf="@+id/textingButton"
-        android:layout_toEndOf="@+id/textingButton" />
+        android:id="@+id/securityButton"
+        android:layout_alignBaseline="@+id/textingButton"
+        android:layout_alignBottom="@+id/textingButton"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dad"
-        android:id="@+id/dadButton"
-        android:layout_alignBottom="@+id/codyButton"
+        android:id="@+id/customizeButton"
+        android:layout_alignBaseline="@+id/textingButton"
+        android:layout_alignBottom="@+id/textingButton"
         android:layout_toLeftOf="@+id/textingButton"
         android:layout_toStartOf="@+id/textingButton" />
 

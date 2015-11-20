@@ -1,4 +1,4 @@
-package edu.ctec.textapp;
+package edu.ctec.textapp.controller;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -12,29 +12,30 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
 import android.widget.Spinner;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import edu.ctec.textapp.model.AndroidSaveState;
+import edu.ctec.textapp.R;
 
 
 public class TextActivity extends AppCompatActivity
 {
+    //Declaration section.
+    private AndroidSaveState saveState;
     private Button textingButton;
     private EditText numberText;
     private TextView textingView;
     private Spinner smsEdit;
     private byte[] hold;
     private String defaultNumber;
-    private Button codyButton;
-    private Button dadButton;
+    private Button securityButton;
+    private Button customizeButton;
     private ArrayList<String> myLIST;
     private String Text;
     private String phoneNumber;
@@ -49,8 +50,8 @@ public class TextActivity extends AppCompatActivity
         textingView = (TextView) findViewById(R.id.textingView);
         numberText = (EditText) findViewById(R.id.nuberText);
         smsEdit = (Spinner) findViewById(R.id.smsEdit);
-        codyButton = (Button) findViewById(R.id.codyButton);
-        dadButton = (Button) findViewById(R.id.dadButton);
+        securityButton = (Button) findViewById(R.id.securityButton);
+        customizeButton = (Button) findViewById(R.id.customizeButton);
         myLIST = new ArrayList<String>();
         Text = "I forgot to select a message to send.";
 
@@ -116,7 +117,7 @@ public class TextActivity extends AppCompatActivity
             }
         });
 
-        codyButton.setOnClickListener(new View.OnClickListener()
+        securityButton.setOnClickListener(new View.OnClickListener()
         {
                 public void onClick(View currentView)
                 {
@@ -125,7 +126,7 @@ public class TextActivity extends AppCompatActivity
 
         });
 
-        dadButton.setOnClickListener(new View.OnClickListener() {
+        customizeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View currentView) {
                 numberText.setText("8019493881");
             }
