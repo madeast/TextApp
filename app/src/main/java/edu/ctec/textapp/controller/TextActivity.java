@@ -125,7 +125,7 @@ public class TextActivity extends AppCompatActivity
                 }
 
         });
-
+        // Will allow the user to access customization screen.
         customizeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View currentView) {
                 numberText.setText("8019493881");
@@ -133,7 +133,7 @@ public class TextActivity extends AppCompatActivity
         });
 
 
-
+        // When smsEdit text is selected show strings.
         smsEdit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -148,7 +148,7 @@ public class TextActivity extends AppCompatActivity
         });
 
     }
-
+    //Loads all preset text fields.
     private void loadArrayList()
     {
         myLIST.add("Hey how are you doing?");
@@ -157,13 +157,13 @@ public class TextActivity extends AppCompatActivity
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, myLIST);
         smsEdit.setAdapter(spinnerAdapter);
     }
-
+    // finds the phone number and sends the text.
     private void sendSMS(String phoneNumber, String messageContent)
     {
         SmsManager mySMSManager = SmsManager.getDefault();
         mySMSManager.sendTextMessage(phoneNumber, null, messageContent, null, null);
     }
-
+    // Takes the most recent number and rembers it.
     private void saveRecentNumber(String number)
     {
         try
