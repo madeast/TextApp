@@ -7,6 +7,7 @@ import android.app.Application;
  */
 public class AndroidSaveState extends Application
 {
+    //Will act as the go between the main screen and the actual texting app.
     private String personalNumber;
     private String personalName;
 

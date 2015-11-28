@@ -57,6 +57,7 @@ public class TextActivity extends AppCompatActivity
 
         try
         {
+            //Allows app to remeber the last number that was used when the app closes.
             InputStream inputString = openFileInput("defaultNumber");
             if(inputString != null)
             {
@@ -65,6 +66,7 @@ public class TextActivity extends AppCompatActivity
                 String defaultDigit = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
+                //Sets the number to the last used number.
                 while((defaultDigit = bufferedStringReader.readLine()) != null)
                 {
                     stringBuilder.append(defaultDigit);
@@ -80,6 +82,7 @@ public class TextActivity extends AppCompatActivity
             //Toast.makeText(getApplicationContext(), worked, Toast.LENGTH_SHORT);
 
         }
+        //Prevent errors if the app hasn't been used before.
         catch(FileNotFoundException e)
         {
             Toast.makeText(getApplicationContext(), "First Time opening this App!", Toast.LENGTH_SHORT);
@@ -96,6 +99,7 @@ public class TextActivity extends AppCompatActivity
 
     private void setupListeners()
     {
+        //Sends the actual text to the specified number.
         textingButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View currentView)
@@ -117,6 +121,7 @@ public class TextActivity extends AppCompatActivity
             }
         });
 
+        //Will set the text number to the number that is set to the button.
         securityButton.setOnClickListener(new View.OnClickListener()
         {
                 public void onClick(View currentView)

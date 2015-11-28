@@ -49,6 +49,7 @@ public class CustomizeActivity extends AppCompatActivity
 
     private void setupListeners()
     {
+        //Will save numbers to the customizable button to allow personal numbers.
         saveButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
